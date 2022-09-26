@@ -19,8 +19,9 @@
         android:layout_margin="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        android:text="Traducir en tiempo real"
-        android:background="@android:color/holo_blue_dark"/>/>
+        android:text="Abecedario LSCh"
+        android:background="@android:color/holo_blue_dark"
+        android:textColor="@color/cardview_light_background"/>
 
     <Button
         android:id="@+id/traslateButton"
@@ -30,12 +31,24 @@
         android:layout_margin="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        android:text="Abecedario LSCh"
-        android:background="@android:color/holo_blue_dark"/>
+        android:text="Traductor en tiempo real"
+        android:background="@android:color/holo_blue_dark"
+        android:textColor="@color/cardview_light_background"/>
 
     <ImageView
+        android:id="@+id/imageView"
         android:layout_width="237dp"
         android:layout_height="251dp"
-        app:srcCompat="@drawable/_694343" />
+        app:srcCompat="@drawable/_694343"
+        app:layout_constraintBottom_toTopOf="@+id/detectButton"
+        tools:srcCompat="@drawable/kite"/>
+
+    <org.tensorflow.lite.examples.detection.customview.OverlayView
+        android:id="@+id/tracking_overlay"
+        android:layout_width="10dp"
+        android:layout_height="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </LinearLayout>
