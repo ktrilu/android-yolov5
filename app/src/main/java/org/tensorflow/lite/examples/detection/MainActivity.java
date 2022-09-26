@@ -39,9 +39,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        cameraButton = findViewById(R.id.cameraButton);
+        cameraButton = findViewById(R.id.traslateButton);
         detectButton = findViewById(R.id.detectButton);
-        imageView = findViewById(R.id.imageView);
 
         cameraButton.setOnClickListener(v -> startActivity(new Intent(MainActivity.this, DetectorActivity.class)));
 
@@ -62,6 +61,7 @@ public class MainActivity extends AppCompatActivity {
         this.sourceBitmap = Utils.getBitmapFromAsset(MainActivity.this, "kite.jpg");
 
         this.cropBitmap = Utils.processBitmap(sourceBitmap, TF_OD_API_INPUT_SIZE);
+
 
         this.imageView.setImageBitmap(cropBitmap);
 
