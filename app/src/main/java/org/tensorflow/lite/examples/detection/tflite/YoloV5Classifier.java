@@ -1,11 +1,8 @@
 /* Copyright 2019 The TensorFlow Authors. All Rights Reserved.
-
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
 You may obtain a copy of the License at
-
     http://www.apache.org/licenses/LICENSE-2.0
-
 Unless required by applicable law or agreed to in writing, software
 distributed under the License is distributed on an "AS IS" BASIS,
 WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -148,6 +145,7 @@ public class YoloV5Classifier implements Classifier {
         return d;
     }
 
+
     public int getInputSize() {
         return INPUT_SIZE;
     }
@@ -224,7 +222,7 @@ public class YoloV5Classifier implements Classifier {
     //config yolo
     private int INPUT_SIZE = -1;
 
-//    private int[] OUTPUT_WIDTH;
+    //    private int[] OUTPUT_WIDTH;
 //    private int[][] MASKS;
 //    private int[] ANCHORS;
     private  int output_box;
@@ -269,6 +267,16 @@ public class YoloV5Classifier implements Classifier {
     private YoloV5Classifier() {
     }
 
+    private static String letra_Acutual;
+
+    public static String getLetra_Acutual() {
+        return letra_Acutual;
+    }
+
+    public void setLetra_Acutual(String letra_Acutual) {
+        this.letra_Acutual = letra_Acutual;
+    }
+
     //non maximum suppression
     protected ArrayList<Recognition> nms(ArrayList<Recognition> list) {
         ArrayList<Recognition> nmsList = new ArrayList<Recognition>();
@@ -304,12 +312,17 @@ public class YoloV5Classifier implements Classifier {
                 for (int j = 1; j < detections.length; j++) {
                     Recognition detection = detections[j];
                     RectF b = detection.getLocation();
+                    System.out.println("El titulo final de esta mequisima es: "+ detection.getTitle() );
+                    setLetra_Acutual(detection.getTitle());
+                    System.out.println("El titulo del get es: "+ getLetra_Acutual() );
                     if (box_iou(max.getLocation(), b) < mNmsThresh) {
                         pq.add(detection);
                     }
                 }
             }
         }
+
+        System.out.println("El nmsList "+ nmsList.size() );
         return nmsList;
     }
 
@@ -453,6 +466,7 @@ public class YoloV5Classifier implements Classifier {
         Log.d("YoloV5Classifier", "detect end");
         final ArrayList<Recognition> recognitions = nms(detections);
 //        final ArrayList<Recognition> recognitions = detections;
+        System.out.println("El reconocimiento es:"+ recognitions);
         return recognitions;
     }
 
