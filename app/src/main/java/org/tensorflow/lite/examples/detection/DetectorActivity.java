@@ -90,10 +90,12 @@ public class DetectorActivity extends CameraActivity implements OnImageAvailable
 
         tracker = new MultiBoxTracker(this);
 
+        //modelView es el modelo seleccionado de la lista de modelos que se cargan del assets
         final int modelIndex = modelView.getCheckedItemPosition();
         final String modelString = modelStrings.get(modelIndex);
 
         try {
+            //retorna un YoloV5Classifier, a partir del seleccionado
             detector = DetectorFactory.getDetector(getAssets(), modelString);
         } catch (final IOException e) {
             e.printStackTrace();
@@ -104,9 +106,10 @@ public class DetectorActivity extends CameraActivity implements OnImageAvailable
             toast.show();
             finish();
         }
-
+        //a partir del modelo el cropSize es de 320
         int cropSize = detector.getInputSize();
 
+        //medidas sacadas del dispositivo donde corre la aplicacion
         previewWidth = size.getWidth();
         previewHeight = size.getHeight();
 
@@ -114,6 +117,9 @@ public class DetectorActivity extends CameraActivity implements OnImageAvailable
         LOGGER.i("Camera orientation relative to screen canvas: %d", sensorOrientation);
 
         LOGGER.i("Initializing at size %dx%d", previewWidth, previewHeight);
+
+        //Posibles configuraciones de mapa de bits. Una configuración de mapa de bits describe cómo se almacenan los píxeles. Esto afecta la calidad (profundidad de color), así como la capacidad de mostrar colores transparentes / translúcidos.
+        //ARGB_8888 = Cada píxel se almacena en 4 bytes.
         rgbFrameBitmap = Bitmap.createBitmap(previewWidth, previewHeight, Config.ARGB_8888);
         croppedBitmap = Bitmap.createBitmap(cropSize, cropSize, Config.ARGB_8888);
 

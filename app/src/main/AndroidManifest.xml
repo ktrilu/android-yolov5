@@ -34,5 +34,6 @@
             </intent-filter>
         </activity>
         <activity android:name=".DetectorActivity"></activity>
+        <activity android:name=".Abecedario"></activity>
     </application>
 </manifest>

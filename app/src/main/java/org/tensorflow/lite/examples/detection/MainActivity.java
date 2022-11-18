@@ -45,23 +45,15 @@ public class MainActivity extends AppCompatActivity {
 
         cameraButton.setOnClickListener(v -> startActivity(new Intent(MainActivity.this, DetectorActivity.class)));
 
-        detectButton.setOnClickListener(v -> {
-            Handler handler = new Handler();
+        //Detector button no se ocupa, hay que ver la forma de eliminarlo
+        detectButton.setOnClickListener(v -> startActivity(new Intent(MainActivity.this, Abecedario.class)));
 
-            new Thread(() -> {
-                final List<Classifier.Recognition> results = detector.recognizeImage(cropBitmap);
-                handler.post(new Runnable() {
-                    @Override
-                    public void run() {
-                        handleResult(cropBitmap, results);
-                    }
-                });
-            }).start();
-
-        });
+        //Crea un objeto de mapa de bits a partir de la imagen de assets
         this.sourceBitmap = Utils.getBitmapFromAsset(MainActivity.this, "7694343.png");
 
+        //Devuelve una matriz de transformación de un marco de referencia a otro. Maneja el recorte (si se desea mantener la relación de aspecto) y la rotación.
         this.cropBitmap = Utils.processBitmap(sourceBitmap, TF_OD_API_INPUT_SIZE);
+
 
         this.imageView.setImageBitmap(cropBitmap);
 
@@ -105,6 +97,7 @@ public class MainActivity extends AppCompatActivity {
     private ImageView imageView;
 
     private void initBox() {
+        //esta parte no se ocupa para la deteccion, solo para dimensionar la imagen del activity main
         previewHeight = TF_OD_API_INPUT_SIZE;
         previewWidth = TF_OD_API_INPUT_SIZE;
         frameToCropTransform =
@@ -123,6 +116,7 @@ public class MainActivity extends AppCompatActivity {
 
         tracker.setFrameConfiguration(TF_OD_API_INPUT_SIZE, TF_OD_API_INPUT_SIZE, sensorOrientation);
 
+        //aqui ya carga el modelo, los labels, TF_OD_API_IS_QUANTIZED (si el modelo esta cuantizado, quantization es el proceso de reducir el tamaño del modelo para que corra en dispositivos ligeros, reduciendo la cantidad de bits de los pesos ejemplo= peso 3.14, se reduce a 3.)
         try {
             detector =
                     YoloV5Classifier.create(

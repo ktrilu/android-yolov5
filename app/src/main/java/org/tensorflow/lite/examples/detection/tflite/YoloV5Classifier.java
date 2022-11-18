@@ -267,14 +267,18 @@ public class YoloV5Classifier implements Classifier {
     private YoloV5Classifier() {
     }
 
-    private static String letra_Acutual;
+    private static String letraActual;
 
-    public static String getLetra_Acutual() {
-        return letra_Acutual;
+    public static String getLetraActual() {
+        if(letraActual !=null){
+            return letraActual;
+        }
+        return "";
+
     }
 
-    public void setLetra_Acutual(String letra_Acutual) {
-        this.letra_Acutual = letra_Acutual;
+    public void setLetraActual(String letraActual) {
+        this.letraActual = letraActual;
     }
 
     //non maximum suppression
@@ -312,9 +316,7 @@ public class YoloV5Classifier implements Classifier {
                 for (int j = 1; j < detections.length; j++) {
                     Recognition detection = detections[j];
                     RectF b = detection.getLocation();
-                    System.out.println("El titulo final de esta mequisima es: "+ detection.getTitle() );
-                    setLetra_Acutual(detection.getTitle());
-                    System.out.println("El titulo del get es: "+ getLetra_Acutual() );
+                    setLetraActual(detection.getTitle());
                     if (box_iou(max.getLocation(), b) < mNmsThresh) {
                         pq.add(detection);
                     }

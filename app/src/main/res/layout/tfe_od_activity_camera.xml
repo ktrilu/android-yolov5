@@ -11,61 +11,95 @@
  limitations under the License.
 -->
 
-<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="#00000000">
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical"
+    android:layout_gravity="center"
+    android:background="@android:color/holo_orange_dark">
 
-    <RelativeLayout
-        android:id="@+id/relativeLayout"
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/tfe_color_primary_dark"
-        android:orientation="vertical">
+        android:layout_height="?attr/actionBarSize"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="5dp">
+
+    </androidx.appcompat.widget.Toolbar>
+
+    <FrameLayout
+        android:id="@+id/container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:context="org.tensorflow.demo.CameraActivity">
+
+    </FrameLayout>
+
+    <Button
+        android:id="@+id/volver"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center|bottom"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/button"
+        android:onClick="onClickVolver"
+        android:text="volver"
+        android:textColor="@color/cardview_light_background" />
 
 
-        <androidx.appcompat.widget.Toolbar
-            android:id="@+id/toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:layout_alignParentTop="true"
-            android:layout_marginTop="5dp">
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="300dp"
+        android:layout_height="80dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="100dp"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:background="@drawable/texto"
+        android:text="CAPTURE SEÑAS" />
 
+    <Button
+        android:id="@+id/delete"
+        android:layout_width="60dp"
+        android:layout_height="80dp"
+        android:layout_marginLeft="290dp"
+        android:layout_marginTop="300dp"
+        android:layout_gravity="center"
+        android:background="@drawable/button"
+        android:onClick="onClickDelete"
+        android:text="Borrar"
+        android:textColor="@color/cardview_light_background" />
 
-        </androidx.appcompat.widget.Toolbar>
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="200dp"
+        android:layout_height="80dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="300dp"
+        android:background="@drawable/button"
+        android:onClick="onClick"
+        android:text="CAPTURAR LETRA"
+        android:textColor="@color/cardview_light_background" />
 
-        <FrameLayout
-            android:id="@+id/container"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            tools:context="org.tensorflow.demo.CameraActivity">
-
-        </FrameLayout>
-
-        <Button
-            android:id="@+id/button2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignBottom="@+id/toolbar"
-            android:layout_alignParentEnd="true"
-            android:layout_marginEnd="155dp"
-            android:layout_marginBottom="-518dp"
-            android:onClick="onClick"
-            android:text="Button" />
-
-        <TextView
-            android:id="@+id/textView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="TextViewMostradoApp" />
-
-    </RelativeLayout>
+    <Button
+        android:id="@+id/button3"
+        android:layout_width="200dp"
+        android:layout_height="80dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="500dp"
+        android:background="@drawable/button"
+        android:onClick="onClickSpace"
+        android:text="ESPACIO"
+        android:textColor="@color/cardview_light_background" />
 
     <include
         android:id="@+id/bottom_sheet_layout"
+        android:visibility="invisible"
         layout="@layout/tfe_od_layout_bottom_sheet"
         android:layout_height="607dp" />
+
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

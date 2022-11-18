@@ -20,7 +20,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         android:text="Abecedario LSCh"
-        android:background="@android:color/holo_blue_dark"
+        android:background="@drawable/button"
         android:textColor="@color/cardview_light_background"/>
 
     <Button
@@ -32,7 +32,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         android:text="Traductor en tiempo real"
-        android:background="@android:color/holo_blue_dark"
+        android:background="@drawable/button"
         android:textColor="@color/cardview_light_background"/>
 
     <ImageView

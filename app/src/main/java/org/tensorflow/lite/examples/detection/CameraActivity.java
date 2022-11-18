@@ -109,6 +109,8 @@ public abstract class CameraActivity extends AppCompatActivity
 
   ArrayList<String> deviceStrings = new ArrayList<String>();
 
+  private String texto = "";
+
   @Override
   protected void onCreate(final Bundle savedInstanceState) {
     LOGGER.d("onCreate " + this);
@@ -580,7 +582,7 @@ public abstract class CameraActivity extends AppCompatActivity
 //    else apiSwitchCompat.setText("TFLITE");
 //  }
 
-  TextView letras_mostrar;
+  TextView letrasView;
   @Override
   public void onClick(View v) {
     if (v.getId() == R.id.plus) {
@@ -600,10 +602,39 @@ public abstract class CameraActivity extends AppCompatActivity
       threadsTextView.setText(String.valueOf(numThreads));
       setNumThreads(numThreads);
     }
-    System.out.println( "La letra final es");
-    System.out.println( YoloV5Classifier.getLetra_Acutual());
-    letras_mostrar = findViewById(R.id.textView);
-    letras_mostrar.setText(YoloV5Classifier.getLetra_Acutual());
+    letrasView = findViewById(R.id.textView);
+    texto += YoloV5Classifier.getLetraActual();
+    letrasView.setText(texto);
+
+
+  }
+
+  public void onClickSpace(View v) {
+    letrasView = findViewById(R.id.textView);
+    texto += " ";
+    letrasView.setText(texto);
+  }
+
+  public void onClickDelete(View v) {
+    try {
+      letrasView = findViewById(R.id.textView);
+      texto = texto.substring(0, texto.length()-1);
+      letrasView.setText(texto);
+    }
+    catch(Exception e) {
+      //  Block of code to handle errors
+    }
+
+  }
+  public void onClickVolver(View v) {
+    try {
+      letrasView = findViewById(R.id.textView);
+      finish();
+    }
+    catch(Exception e) {
+      //  Block of code to handle errors
+    }
+
   }
 
   public void onBoton(){
